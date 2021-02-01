@@ -37,6 +37,22 @@ export const constantRoutes = [
 
 export const asyncRoutes = [
   {
+    path: '/personalCenter',
+    component: Layout,
+    redirect: 'noRedirect',
+    hidden: true,
+    children: [
+      {
+        path: 'personalCenter',
+        name: 'personalCenter',
+        component: () => import('@/views/personalCenter/index'),
+        meta: {
+          title: '个人中心',
+        },
+      },
+    ],
+  },
+  {
     path: '/',
     component: Layout,
     redirect: 'index',
@@ -53,23 +69,23 @@ export const asyncRoutes = [
       },
     ],
   },
-  /* {
-    path: "/test",
+  {
+    path: '/test',
     component: Layout,
-    redirect: "noRedirect",
+    redirect: 'noRedirect',
     children: [
       {
-        path: "test",
-        name: "Test",
-        component: () => import("@/views/test/index"),
+        path: 'test',
+        name: 'Test',
+        component: () => import('@/views/test/index'),
         meta: {
-          title: "test",
-          icon: "marker",
-          permissions: ["admin"],
+          title: 'test',
+          icon: 'marker',
+          permissions: ['admin'],
         },
       },
     ],
-  }, */
+  },
 
   {
     path: '/vab',
