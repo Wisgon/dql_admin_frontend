@@ -34,8 +34,8 @@
       },
       websocketonopen() {
         //连接建立之后执行send方法发送数据
-        let actions = { test: '12345' }
-        this.websocketsend(JSON.stringify(actions))
+        let token = '43ht3tjo345345jojkjklj'
+        this.websocketsend(token)
         console.log('socket connected')
       },
       websocketonerror() {
