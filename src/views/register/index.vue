@@ -92,7 +92,8 @@
 </template>
 <script>
   import { isPassword, isPhone } from '@/utils/validate'
-  import { register } from '@/api/user'
+  import { register } from '@/api/dql_user'
+  import md5 from 'js-md5'
   export default {
     username: 'Register',
     directives: {
@@ -147,7 +148,7 @@
             { validator: validatePassword, trigger: 'blur' },
           ],
           phoneCode: [
-            { required: true, trigger: 'blur', message: '请输入手机验证码' },
+            { required: false, trigger: 'blur', message: '请输入手机验证码' },
           ],
         },
         loading: false,
@@ -184,16 +185,26 @@
         }, 1000)
       },
       handleReister() {
+        var that = this
         this.$refs['registerForm'].validate(async (valid) => {
           if (valid) {
             const param = {
               username: this.form.username,
               phone: this.form.phone,
-              password: this.form.password,
-              phoneCode: this.form.phoneCode,
+              password: md5(this.form.password),
+              // phoneCode: this.form.phoneCode,
             }
-            const { msg } = await register(param)
-            this.$baseMessage(msg, 'success')
+            await register(param).then((res) => {
+              console.log('res :>> ', res)
+              if (res.code == 0) {
+                that.$baseMessage(res.message, 'success')
+                setTimeout(() => {
+                  that.$router.push('/login').catch(() => {})
+                }, 2000)
+              } else {
+                that.$baseMessage(res.message, 'error')
+              }
+            })
           }
         })
       },

@@ -75,6 +75,7 @@
 
 <script>
   import { isPassword } from '@/utils/validate'
+  import md5 from 'js-md5'
 
   export default {
     name: 'Login',
@@ -162,6 +163,7 @@
         this.$refs.form.validate((valid) => {
           if (valid) {
             this.loading = true
+            this.form.password = md5(this.form.password)
             this.$store
               .dispatch('user/login', this.form)
               .then(() => {
