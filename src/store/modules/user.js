@@ -4,7 +4,8 @@
  */
 
 import Vue from 'vue'
-import { getUserInfo, login, logout } from '@/api/user'
+import { getUserInfo, logout } from '@/api/user'
+import { login } from '@/api/dql_user'
 import {
   getAccessToken,
   removeAccessToken,
@@ -45,8 +46,12 @@ const actions = {
     commit('setPermissions', permissions)
   },
   async login({ commit }, userInfo) {
-    const { data } = await login(userInfo)
-    const accessToken = data[tokenName]
+    const resp = await login(userInfo)
+    if (resp.code != 0) {
+      Vue.prototype.$baseMessage(resp.message, 'error')
+      return
+    }
+    const accessToken = resp.data[tokenName]
     if (accessToken) {
       commit('setAccessToken', accessToken)
       const hour = new Date().getHours()
