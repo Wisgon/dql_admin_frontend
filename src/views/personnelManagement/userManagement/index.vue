@@ -154,7 +154,10 @@
       },
       async fetchData() {
         this.listLoading = true
-        const { data, totalCount } = await getList(this.queryForm)
+        const resp = await getList(this.queryForm)
+        console.log('resp :>> ', resp)
+        const data = resp.data
+        const totalCount = resp.totalCount
         this.list = data
         this.total = totalCount
         setTimeout(() => {

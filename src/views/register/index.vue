@@ -191,11 +191,11 @@
             const param = {
               username: this.form.username,
               phone: this.form.phone,
-              password: md5(this.form.password),
+              password: this.form.password,
               // phoneCode: this.form.phoneCode,
             }
             await register(param).then((res) => {
-              console.log('res :>> ', res)
+              // console.log('res :>> ', res)
               if (res.code == 0) {
                 that.$baseMessage(res.message, 'success')
                 setTimeout(() => {
