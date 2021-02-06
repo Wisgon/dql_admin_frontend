@@ -191,7 +191,7 @@
             const param = {
               username: this.form.username,
               phone: this.form.phone,
-              password: md5(this.form.password),
+              password: this.form.password,
               // phoneCode: this.form.phoneCode,
             }
             await register(param).then((res) => {
