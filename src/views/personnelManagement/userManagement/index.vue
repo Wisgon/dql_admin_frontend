@@ -85,6 +85,7 @@
 
 <script>
   import { getList, doDelete } from '@/api/userManagement'
+  import { getList as gl } from '@/api/dql_userManagement'
   import Edit from './components/UserManagementEdit'
 
   export default {

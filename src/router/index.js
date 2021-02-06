@@ -1,5 +1,5 @@
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
+ * @author zhilong
  * @description router全局配置，如有必要可分文件抽离，其中asyncRoutes只有在intelligence模式下才会用到，vip文档中已提供路由的基础图标与小清新图标的配置方案，请仔细阅读
  */
 
@@ -284,8 +284,7 @@ export const asyncRoutes = [
         meta: { title: '错误日志模拟', permissions: ['admin'] },
       },
       {
-        path:
-          'https://github.com/chuzhixin/vue-admin-beautiful?utm_source=gold_browser_extension',
+        path: 'https://www.baidu.com',
         name: 'ExternalLink',
         meta: {
           title: '外链',

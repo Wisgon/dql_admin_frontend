@@ -1,6 +1,6 @@
 <template>
   <div class="vab-ad">
-    <el-carousel
+    <!-- <el-carousel
       v-if="adList"
       height="30px"
       direction="vertical"
@@ -12,7 +12,7 @@
         <el-tag type="warning">Ad</el-tag>
         <a target="_blank" :href="item.url">{{ item.title }}</a>
       </el-carousel-item>
-    </el-carousel>
+    </el-carousel> -->
   </div>
 </template>
 <script>

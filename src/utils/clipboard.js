@@ -10,7 +10,7 @@ function clipboardError() {
 }
 
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
+ * @author zhilong
  * @description 复制数据
  * @param text
  * @param event

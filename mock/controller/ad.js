@@ -10,12 +10,12 @@ const data = [
       'https://chu1204505056.gitee.io/admin-plus?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci=',
   },
   {
-    title: 'vue-admin-beautiful（antdv） vue3.0版本已发布，点我提前体验',
+    title: 'dgraph_admin（antdv） vue3.0版本已发布，点我提前体验',
     url:
-      'http://vue-admin-beautiful.com/vue-admin-beautiful-antdv?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci=',
+      'http://dgraph_admin.com/dgraph_admin-antdv?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci=',
   },
   {
-    title: 'vue-admin-beautiful（element-plus） vue3.0版本已发布，点我提前体验',
+    title: 'dgraph_admin（element-plus） vue3.0版本已发布，点我提前体验',
     url:
       'https://chu1204505056.gitee.io/admin-plus?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci=',
   },

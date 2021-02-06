@@ -1,9 +1,8 @@
 {
-  "name": "vue-admin-beautiful",
+  "name": "dgraph_admin",
   "version": "1.0.0",
-  "author": "vue-admin-beautiful",
+  "author": "dgraph_admin",
   "participants": [],
-  "homepage": "https://chu1204505056.gitee.io/vue-admin-beautiful",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
@@ -24,10 +23,6 @@
     "update:globle": "ncu -g --concurrency 10 --timeout 80000",
     "push": "start ./push.sh",
     "deploy": "start ./deploy.sh"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chuzhixin/vue-admin-beautiful.git"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

@@ -30,8 +30,8 @@
     components: { VabMarkdownEditor },
     data() {
       return {
-        value: '# vue-admin-beautiful',
-        html: '<h1 id="vue-admin-beautiful">vue-admin-beautiful</h1>',
+        value: '# dgraph_admin',
+        html: '<h1 id="dgraph_admin">dgraph_admin</h1>',
       }
     },
     methods: {

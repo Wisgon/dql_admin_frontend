@@ -2,22 +2,16 @@
   <div class="index-container">
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-alert v-if="noticeList[0]" :closable="noticeList[0].closable">
+        <!-- <el-alert v-if="noticeList[0]" :closable="noticeList[0].closable">
           <div
             style="display: flex; align-items: center; justify-content: center"
           >
-            <a
-              target="_blank"
-              href="https://github.com/chuzhixin/vue-admin-beautiful"
-            >
-              <img
-                style="margin-right: 10px"
-                src="https://img.shields.io/github/stars/chuzhixin/vue-admin-beautiful?style=flat-square&label=Stars&logo=github"
-              />
+            <a target="_blank" href="https://www.baidu.com">
+              <img style="margin-right: 10px" src="https://www.baidu.com" />
             </a>
             {{ noticeList[0].title }}
           </div>
-        </el-alert>
+        </el-alert> -->
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
         <el-card shadow="never">
@@ -102,7 +96,7 @@
           <div class="bottom-btn">
             <el-popover placement="top" width="250" trigger="hover">
               <p>
-                这是一个付费群，谢谢您愿意支持开源，加群获取详细文档，群内提供vue-admin-beautiful-template基础模板
+                这是一个付费群，谢谢您愿意支持开源，加群获取详细文档，群内提供dgraph_admin-template基础模板
               </p>
               <el-image :src="require('@/assets/ewm.png')"></el-image>
               <a slot="reference" target="_blank">
@@ -112,17 +106,14 @@
             <a @click="handleChangeTheme">
               <el-button type="danger">修改主题和布局</el-button>
             </a>
-            <a
-              target="_blank"
-              href="https://github.com/chuzhixin/vue-admin-beautiful"
-            >
+            <a target="_blank" href="https://www.baidu.com">
               <el-button type="warning">
                 github下载源码点star（实时更新）
               </el-button>
             </a>
             <a
               target="_blank"
-              href="https://gitee.com/chu1204505056/vue-admin-beautiful"
+              href="https://gitee.com/chu1204505056/dgraph_admin"
             >
               <el-button type="warning">码云下载源码点star</el-button>
             </a>
@@ -180,7 +171,7 @@
           </div>
           <div style="text-align: center">
             <vab-colorful-icon style="font-size: 140px" icon-class="vab" />
-            <h1 style="font-size: 30px">vue-admin-beautiful</h1>
+            <h1 style="font-size: 30px">dgraph_admin</h1>
           </div>
           <div v-for="(item, index) in noticeList" :key="index">
             <el-alert
@@ -222,7 +213,6 @@
   import { dependencies, devDependencies } from '../../../package.json'
   import { getList } from '@/api/changeLog'
   import { getNoticeList } from '@/api/notice'
-  import { getRepos, getStargazers } from '@/api/github'
   export default {
     name: 'Index',
     components: {
@@ -364,7 +354,7 @@
               },
               data: [
                 {
-                  name: 'vue-admin-beautiful',
+                  name: 'dgraph_admin',
                   value: 15000,
                 },
                 {
@@ -381,7 +371,7 @@
                   value: 6500,
                 },
                 {
-                  name: 'chuzhixin',
+                  name: 'zhilong',
                   value: 6000,
                 },
                 {
@@ -468,7 +458,7 @@
         zgdt: {
           title: {
             text: '2099年全国GDP分布',
-            subtext: '数据来自vue-admin-beautiful杜撰',
+            subtext: '数据来自dgraph_admin杜撰',
           },
           tooltip: {
             trigger: 'item',
@@ -563,7 +553,7 @@
           {
             icon: 'laptop-code',
             title: '源码',
-            link: 'https://github.com/chuzhixin/vue-admin-beautiful',
+            link: 'https://www.baidu.com',
             color: '#fac858',
           },
           {

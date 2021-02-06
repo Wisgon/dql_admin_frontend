@@ -1,7 +1,7 @@
 import { storage, tokenTableName } from '@/config'
 
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
+ * @author zhilong
  * @description 获取accessToken
  * @returns {string|ActiveX.IXMLDOMNode|Promise<any>|any|IDBRequest<any>|MediaKeyStatus|FormDataEntryValue|Function|Promise<Credential | null>}
  */
@@ -20,7 +20,7 @@ export function getAccessToken() {
 }
 
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
+ * @author zhilong
  * @description 存储accessToken
  * @param accessToken
  * @returns {void|*}
@@ -40,7 +40,7 @@ export function setAccessToken(accessToken) {
 }
 
 /**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
+ * @author zhilong
  * @description 移除accessToken
  * @returns {void|Promise<void>}
  */

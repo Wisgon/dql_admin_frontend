@@ -11,10 +11,6 @@
 
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item command="personalCenter">个人中心</el-dropdown-item>
-      <el-dropdown-item command="github">github地址</el-dropdown-item>
-      <el-dropdown-item command="gitee" divided>码云地址</el-dropdown-item>
-      <el-dropdown-item command="pro" divided>pro付费版地址</el-dropdown-item>
-      <el-dropdown-item command="plus" divided>plus付费版地址</el-dropdown-item>
       <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
@@ -41,21 +37,6 @@
           case 'personalCenter':
             this.personalCenter()
             break
-          case 'github':
-            window.open('https://github.com/chuzhixin/vue-admin-beautiful')
-            break
-          case 'gitee':
-            window.open('https://gitee.com/chu1204505056/vue-admin-beautiful')
-            break
-          case 'pro':
-            window.open(
-              'https://chu1204505056.gitee.io/admin-pro/?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci='
-            )
-            break
-          case 'plus':
-            window.open(
-              'https://chu1204505056.gitee.io/admin-plus/?hmsr=homeAd&hmpl=&hmcu=&hmkw=&hmci='
-            )
         }
       },
       personalCenter() {
