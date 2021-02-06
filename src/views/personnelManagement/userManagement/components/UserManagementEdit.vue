@@ -70,6 +70,7 @@
         } else {
           this.title = '编辑'
           this.form = Object.assign({}, row)
+          console.log('row :>> ', row)
         }
         this.dialogFormVisible = true
       },

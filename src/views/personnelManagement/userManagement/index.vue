@@ -36,8 +36,8 @@
       <el-table-column show-overflow-tooltip type="selection"></el-table-column>
       <el-table-column
         show-overflow-tooltip
-        prop="id"
-        label="id"
+        prop="uid"
+        label="uid"
       ></el-table-column>
       <el-table-column
         show-overflow-tooltip
@@ -60,7 +60,7 @@
 
       <el-table-column
         show-overflow-tooltip
-        prop="datatime"
+        prop="update_time"
         label="修改时间"
       ></el-table-column>
       <el-table-column show-overflow-tooltip label="操作" width="200">
@@ -84,8 +84,8 @@
 </template>
 
 <script>
-  import { getList, doDelete } from '@/api/userManagement'
-  import { getList as gl } from '@/api/dql_userManagement'
+  import { doDelete } from '@/api/userManagement'
+  import { getList } from '@/api/dql_userManagement'
   import Edit from './components/UserManagementEdit'
 
   export default {
@@ -114,22 +114,22 @@
         this.selectRows = val
       },
       handleEdit(row) {
-        if (row.id) {
+        if (row.uid) {
           this.$refs['edit'].showEdit(row)
         } else {
           this.$refs['edit'].showEdit()
         }
       },
       handleDelete(row) {
-        if (row.id) {
+        if (row.uid) {
           this.$baseConfirm('你确定要删除当前项吗', null, async () => {
-            const { msg } = await doDelete({ ids: row.id })
+            const { msg } = await doDelete({ ids: row.uid })
             this.$baseMessage(msg, 'success')
             this.fetchData()
           })
         } else {
           if (this.selectRows.length > 0) {
-            const ids = this.selectRows.map((item) => item.id).join()
+            const ids = this.selectRows.map((item) => item.uid).join()
             this.$baseConfirm('你确定要删除选中项吗', null, async () => {
               const { msg } = await doDelete({ ids })
               this.$baseMessage(msg, 'success')
@@ -154,9 +154,9 @@
         this.fetchData()
       },
       async fetchData() {
-        this.listLoading = true
         const resp = await getList(this.queryForm)
-        console.log('resp :>> ', resp)
+        //console.log('resp :>> ', resp)
+        this.listLoading = true
         const data = resp.data
         const totalCount = resp.totalCount
         this.list = data

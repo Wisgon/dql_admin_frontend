@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/utils/dql_request'
 
 export function getList(data) {
   return request({
