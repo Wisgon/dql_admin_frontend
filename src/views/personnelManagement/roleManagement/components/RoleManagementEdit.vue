@@ -7,7 +7,7 @@
   >
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
       <el-form-item label="权限码" prop="permission">
-        <el-input v-model="form.permission" autocomplete="off"></el-input>
+        <el-input v-model="form.name" autocomplete="off"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">

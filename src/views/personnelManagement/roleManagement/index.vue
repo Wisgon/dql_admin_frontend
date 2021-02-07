@@ -16,7 +16,7 @@
         <el-form :inline="true" :model="queryForm" @submit.native.prevent>
           <el-form-item>
             <el-input
-              v-model.trim="queryForm.permission"
+              v-model.trim="queryForm.name"
               placeholder="请输入查询条件"
               clearable
             />
@@ -39,13 +39,18 @@
       <el-table-column show-overflow-tooltip type="selection"></el-table-column>
       <el-table-column
         show-overflow-tooltip
-        prop="id"
+        prop="uid"
         label="id"
       ></el-table-column>
       <el-table-column
         show-overflow-tooltip
-        prop="permission"
-        label="权限码"
+        prop="name"
+        label="权限名称"
+      ></el-table-column>
+      <el-table-column
+        show-overflow-tooltip
+        prop="role_id"
+        label="权限标识"
       ></el-table-column>
       <el-table-column show-overflow-tooltip label="操作" width="200">
         <template #default="{ row }">
@@ -68,7 +73,8 @@
 </template>
 
 <script>
-  import { getList, doDelete } from '@/api/roleManagement'
+  import { doDelete } from '@/api/roleManagement'
+  import { getList } from '@/api/dql_roleManagement'
   import Edit from './components/RoleManagementEdit'
 
   export default {
@@ -85,7 +91,7 @@
         queryForm: {
           pageNo: 1,
           pageSize: 10,
-          permission: '',
+          name: '',
         },
       }
     },
@@ -97,22 +103,22 @@
         this.selectRows = val
       },
       handleEdit(row) {
-        if (row.id) {
+        if (row.uid) {
           this.$refs['edit'].showEdit(row)
         } else {
           this.$refs['edit'].showEdit()
         }
       },
       handleDelete(row) {
-        if (row.id) {
+        if (row.uid) {
           this.$baseConfirm('你确定要删除当前项吗', null, async () => {
-            const { msg } = await doDelete({ ids: row.id })
+            const { msg } = await doDelete({ ids: row.uid })
             this.$baseMessage(msg, 'success')
             this.fetchData()
           })
         } else {
           if (this.selectRows.length > 0) {
-            const ids = this.selectRows.map((item) => item.id).join()
+            const ids = this.selectRows.map((item) => item.uid).join()
             this.$baseConfirm('你确定要删除选中项吗', null, async () => {
               const { msg } = await doDelete({ ids })
               this.$baseMessage(msg, 'success')
@@ -138,9 +144,9 @@
       },
       async fetchData() {
         this.listLoading = true
-        const { data, totalCount } = await getList(this.queryForm)
+        const { data } = await getList(this.queryForm)
         this.list = data
-        this.total = totalCount
+        this.total = data.length
         setTimeout(() => {
           this.listLoading = false
         }, 300)

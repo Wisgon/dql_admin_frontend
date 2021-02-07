@@ -5,9 +5,9 @@
         <el-button icon="el-icon-plus" type="primary" @click="handleEdit">
           添加
         </el-button>
-        <el-button icon="el-icon-delete" type="danger" @click="handleDelete">
+        <!-- <el-button icon="el-icon-delete" type="danger" @click="handleDelete">
           批量删除
-        </el-button>
+        </el-button> -->
       </vab-query-form-left-panel>
       <vab-query-form-right-panel :span="12">
         <el-form :inline="true" :model="queryForm" @submit.native.prevent>
@@ -33,11 +33,11 @@
       :element-loading-text="elementLoadingText"
       @selection-change="setSelectRows"
     >
-      <el-table-column show-overflow-tooltip type="selection"></el-table-column>
+      <!-- <el-table-column show-overflow-tooltip type="selection"></el-table-column> -->
       <el-table-column
         show-overflow-tooltip
         prop="uid"
-        label="uid"
+        label="id"
       ></el-table-column>
       <el-table-column
         show-overflow-tooltip
@@ -51,9 +51,10 @@
       ></el-table-column>
 
       <el-table-column show-overflow-tooltip label="权限">
+        <!-- 这里的#号其实是v-slot:的缩写 -->
         <template #default="{ row }">
-          <el-tag v-for="(item, index) in row.permissions" :key="index">
-            {{ item }}
+          <el-tag v-for="(role, index) in row.roles" :key="index">
+            {{ role.name }}
           </el-tag>
         </template>
       </el-table-column>
@@ -64,9 +65,25 @@
         label="修改时间"
       ></el-table-column>
       <el-table-column show-overflow-tooltip label="操作" width="200">
+        <!-- 这里的row是elementui的tabel里面的scope里面的元素 -->
+        <!-- 其实下面这句就相当于：<template slot-scope="scope"> 可查看elementui文档 -->
         <template #default="{ row }">
-          <el-button type="text" @click="handleEdit(row)">编辑</el-button>
-          <el-button type="text" @click="handleDelete(row)">删除</el-button>
+          <el-button
+            v-if="row.username != 'admin'"
+            type="text"
+            @click="handleEdit(row)"
+          >
+            编辑
+          </el-button>
+          <el-button v-else type="text" disabled>编辑</el-button>
+          <el-button
+            v-if="row.username != 'admin'"
+            type="text"
+            @click="handleDelete(row)"
+          >
+            删除
+          </el-button>
+          <el-button v-else type="text" disabled>删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -158,7 +175,8 @@
         //console.log('resp :>> ', resp)
         this.listLoading = true
         const data = resp.data
-        const totalCount = resp.totalCount
+        // todo:这里应该是获取所有user的数量，现在先用返回数量顶着
+        const totalCount = resp.data.length
         this.list = data
         this.total = totalCount
         setTimeout(() => {

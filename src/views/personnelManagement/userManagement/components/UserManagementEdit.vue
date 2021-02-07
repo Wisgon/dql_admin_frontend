@@ -21,23 +21,23 @@
       </el-form-item>
       <el-form-item label="权限" prop="permissions">
         <el-checkbox-group v-model="form.permissions">
-          <el-checkbox label="admin"></el-checkbox>
-          <el-checkbox label="editor"></el-checkbox>
-          <el-checkbox label="tourist"></el-checkbox>
+          <el-checkbox v-for="role in roles" :key="role.uid" :label="role.uid">
+            {{ role.name }}
+          </el-checkbox>
         </el-checkbox-group>
       </el-form-item>
     </el-form>
-    <div slot="footer" class="dialog-footer">
+    <slot name="footer" class="dialog-footer">
       <el-button @click="close">取 消</el-button>
       <el-button type="primary" @click="save">确 定</el-button>
-    </div>
+    </slot>
   </el-dialog>
 </template>
 
 <script>
-  import { doEdit } from '@/api/userManagement'
   import { isInArray } from '@/utils/useful'
-  import { doEdit as de } from '@/api/dql_userManagement'
+  import { doEdit } from '@/api/dql_userManagement'
+  import { getList as getRolesLst } from '@/api/dql_roleManagement'
 
   export default {
     name: 'UserManagementEdit',
@@ -49,6 +49,7 @@
           email: '',
           permissions: [],
         },
+        roles: [],
         old_data: {},
         change_data: {},
         rules: {
@@ -67,7 +68,9 @@
         dialogFormVisible: false,
       }
     },
-    created() {},
+    created() {
+      this.fetchData()
+    },
     methods: {
       showEdit(row) {
         if (!row) {
@@ -85,6 +88,7 @@
         this.dialogFormVisible = false
       },
       save() {
+        var that = this
         this.$refs['form'].validate(async (valid) => {
           if (valid) {
             for (let key in this.old_data) {
@@ -115,16 +119,31 @@
               }
             }
             this.change_data['uid'] = this.old_data['uid']
-            const resp = await de(this.change_data)
-            console.log('resp :>> ', resp)
-            const { msg } = await doEdit(this.form)
-            this.$baseMessage(msg, 'success')
-            this.$emit('fetch-data')
-            this.close()
+            //console.log('this.change_data :>> ', this.change_data)
+            var update_data = { update_data: this.change_data }
+            const resp = await doEdit(update_data)
+            // console.log('resp :>> ', resp)
+            if (resp.code == 0) {
+              this.$baseMessage(resp.message, 'success')
+              setTimeout(() => {
+                that.$emit('fetch-data')
+                that.close()
+              }, 1000)
+            } else {
+              this.$baseMessage(resp.message, 'error')
+            }
           } else {
             return false
           }
         })
+      },
+      async fetchData() {
+        var queryForm = {
+          pageNo: 1,
+          pageSize: 10,
+        }
+        const resp = await getRolesLst(queryForm)
+        this.roles = resp.data
       },
     },
   }
