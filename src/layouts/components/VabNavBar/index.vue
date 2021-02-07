@@ -15,7 +15,7 @@
       <el-col :xs="20" :sm="12" :md="12" :lg="12" :xl="12">
         <div class="right-panel">
           <vab-error-log />
-          <vab-full-screen-bar @refresh="refreshRoute" />
+          <!-- <vab-full-screen-bar @refresh="refreshRoute" /> -->
           <vab-theme-bar class="hidden-xs-only" />
           <vab-icon
             title="重载所有路由"

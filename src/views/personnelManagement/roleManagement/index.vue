@@ -1,16 +1,13 @@
 <template>
   <div class="roleManagement-container">
-    <el-divider content-position="left">
-      演示环境仅做基础功能展示，若想实现不同角色的真实菜单配置，需将settings.js路由加载模式改为all模式，由后端全面接管路由渲染与权限控制
-    </el-divider>
     <vab-query-form>
       <vab-query-form-left-panel :span="12">
         <el-button icon="el-icon-plus" type="primary" @click="handleEdit">
           添加
         </el-button>
-        <el-button icon="el-icon-delete" type="danger" @click="handleDelete">
+        <!-- <el-button icon="el-icon-delete" type="danger" @click="handleDelete">
           批量删除
-        </el-button>
+        </el-button> -->
       </vab-query-form-left-panel>
       <vab-query-form-right-panel :span="12">
         <el-form :inline="true" :model="queryForm" @submit.native.prevent>
@@ -36,7 +33,7 @@
       :element-loading-text="elementLoadingText"
       @selection-change="setSelectRows"
     >
-      <el-table-column show-overflow-tooltip type="selection"></el-table-column>
+      <!-- <el-table-column show-overflow-tooltip type="selection"></el-table-column> -->
       <el-table-column
         show-overflow-tooltip
         prop="uid"
@@ -45,7 +42,7 @@
       <el-table-column
         show-overflow-tooltip
         prop="name"
-        label="权限名称"
+        label="角色名称"
       ></el-table-column>
       <el-table-column
         show-overflow-tooltip

@@ -20,6 +20,8 @@ VabProgress.configure({
   trickleSpeed: 200,
   showSpinner: false,
 })
+
+// 每次 $router.push(xxx)都会触发这个函数
 router.beforeResolve(async (to, from, next) => {
   if (progressBar) VabProgress.start()
   let hasToken = store.getters['user/accessToken']

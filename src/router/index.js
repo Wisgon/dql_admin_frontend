@@ -9,6 +9,19 @@ import Layout from '@/layouts'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import { publicPath, routerMode } from '@/config'
 
+// import { getList } from '@/api/dql_roleManagement'
+
+// var queryForm = {
+//   pageNo: 1,
+//   pageSize: 10,
+//   name: '',
+// }
+// getList(queryForm).then((res) => {
+//   console.log('res.data :', res.data)
+// })
+
+// this.$router.go(0) 可强制刷新
+
 Vue.use(VueRouter)
 export const constantRoutes = [
   {
@@ -73,6 +86,9 @@ export const asyncRoutes = [
     path: '/test',
     component: Layout,
     redirect: 'noRedirect',
+    name: 'Test',
+    alwaysShow: true,
+    meta: { title: '测试', icon: 'marker' },
     children: [
       {
         path: 'test',
@@ -80,8 +96,7 @@ export const asyncRoutes = [
         component: () => import('@/views/test/index'),
         meta: {
           title: 'test',
-          icon: 'marker',
-          permissions: ['admin'],
+          permissions: ['admin', 'editor'],
         },
       },
     ],
