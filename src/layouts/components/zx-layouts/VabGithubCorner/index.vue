@@ -1,6 +1,6 @@
 <template>
   <a
-    href="https://github.com/zhilong/dgraph_admin"
+    href="https//www.baidu.com"
     target="_blank"
     class="github-corner"
     aria-label="View source on Github"

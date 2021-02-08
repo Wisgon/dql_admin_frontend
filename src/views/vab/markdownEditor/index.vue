@@ -39,9 +39,7 @@
         this.$refs.mde.add('\n### 新增加的内容')
       },
       handleAddImg() {
-        this.$refs.mde.add(
-          '\n![](https://chu1204505056.gitee.io/byui-bookmarks/img/ewm.png)'
-        )
+        this.$refs.mde.add('\n![](https//www.baidu.com)')
       },
       handleShowHtml(html) {
         this.html = html

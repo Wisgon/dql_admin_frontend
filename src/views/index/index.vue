@@ -111,10 +111,7 @@
                 github下载源码点star（实时更新）
               </el-button>
             </a>
-            <a
-              target="_blank"
-              href="https://gitee.com/chu1204505056/dgraph_admin"
-            >
+            <a target="_blank" href="https//www.baidu.com">
               <el-button type="warning">码云下载源码点star</el-button>
             </a>
             <el-popover placement="top" width="250" trigger="hover">
