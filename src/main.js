@@ -7,7 +7,7 @@ import '@/layouts/export'
 /**
  * @description 生产环境默认都使用mock，如果正式用于生产环境时，记得去掉
  */
-
+//todo:生产环境记得要把这一段注释掉然后再执行`npm run build`
 if (process.env.NODE_ENV === 'production') {
   const { mockXHR } = require('@/utils/static')
   mockXHR()

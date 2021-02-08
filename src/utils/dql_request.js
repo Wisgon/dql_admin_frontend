@@ -56,6 +56,7 @@ const handleCode = (code, msg) => {
 }
 
 const instance = axios.create({
+  // todo:生产环境这里的baseURL记得要改成生产环境的域名，如：http://dql_admin.com
   baseURL: '',
   timeout: requestTimeout,
   headers: {
