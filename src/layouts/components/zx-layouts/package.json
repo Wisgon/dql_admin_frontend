@@ -1,0 +1,33 @@
+{
+  "_args": [
+    [
+      "zx-layouts@0.6.24",
+      "E:\\Documents\\my_projects\\dql_admin_frontend"
+    ]
+  ],
+  "_from": "zx-layouts@0.6.24",
+  "_id": "zx-layouts@0.6.24",
+  "_inBundle": false,
+  "_integrity": "sha512-7Y0MzGNfgK60bm9Apw1GwrnWhhCgW30/m9E1J2p6tDgOaNrw/8/01i87bfTimkPNoQY+bNeMtu3wW8+in80/SQ==",
+  "_location": "/zx-layouts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "zx-layouts@0.6.24",
+    "name": "zx-layouts",
+    "escapedName": "zx-layouts",
+    "rawSpec": "0.6.24",
+    "saveSpec": null,
+    "fetchSpec": "0.6.24"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/zx-layouts/-/zx-layouts-0.6.24.tgz",
+  "_spec": "0.6.24",
+  "_where": "E:\\Documents\\my_projects\\dql_admin_frontend",
+  "main": "index.js",
+  "name": "zx-layouts",
+  "version": "0.6.24"
+}
