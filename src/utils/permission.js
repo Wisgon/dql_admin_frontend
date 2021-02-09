@@ -6,7 +6,7 @@ import store from '@/store'
  * @param value
  * @returns {boolean}
  */
-export default function checkPermission(value) {
+export function checkPermission(value) {
   if (value && value instanceof Array && value.length > 0) {
     const permissions = store.getters['user/permissions']
     const permissionPermissions = value
@@ -18,3 +18,9 @@ export default function checkPermission(value) {
     return false
   }
 }
+
+/**
+ * @author zhilong
+ * @description 从后端获取所有角色的路由权限并更新`async route`
+ */
+export function refreshAsyncRoute() {}

@@ -9,6 +9,7 @@ import {
   requestTimeout,
   successCode,
   tokenName,
+  tokenInvalid,
 } from '@/config'
 import store from '@/store'
 import qs from 'qs'
@@ -48,6 +49,9 @@ const handleCode = (code, msg) => {
       break
     case noPermissionCode:
       router.push({ path: '/401' }).catch(() => {})
+      break
+    case tokenInvalid:
+      router.push({ path: '/403' }).catch(() => {})
       break
     default:
       Vue.prototype.$baseMessage(msg || `后端接口${code}异常`, 'error')
@@ -104,15 +108,15 @@ instance.interceptors.response.use(
       ? [...successCode]
       : [...[successCode]]
     // 是否操作正常
-    // if (codeVerificationArray.includes(code)) {
-    //   return data
-    // } else {
-    //   handleCode(code, msg)
-    //   return Promise.reject(
-    //     "dgraph_admin请求异常拦截:" +
-    //       JSON.stringify({ url: config.url, code, msg }) || "Error"
-    //   )
-    // }
+    if (codeVerificationArray.includes(code)) {
+      return data
+    } else {
+      handleCode(code, msg)
+      return Promise.reject(
+        'dgraph_admin请求异常拦截:' +
+          JSON.stringify({ url: config.url, code, msg }) || 'Error'
+      )
+    }
     return data
   },
   (error) => {

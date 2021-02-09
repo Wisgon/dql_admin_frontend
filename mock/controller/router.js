@@ -290,6 +290,12 @@ const data = [
         component: '@/views/404',
         meta: { title: '404' },
       },
+      {
+        path: '403',
+        name: 'Error403',
+        component: '@/views/403',
+        meta: { title: '403' },
+      },
     ],
   },
 ]

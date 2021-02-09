@@ -168,7 +168,9 @@
               .dispatch('user/login', this.form)
               .then(() => {
                 const routerPath =
-                  this.redirect === '/404' || this.redirect === '/401'
+                  this.redirect === '/404' ||
+                  this.redirect === '/401' ||
+                  this.redirect === '/403'
                     ? '/'
                     : this.redirect
                 this.$router.push(routerPath).catch(() => {})

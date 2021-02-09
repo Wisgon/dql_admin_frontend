@@ -22,6 +22,11 @@ VabProgress.configure({
 })
 
 // 每次 $router.push(xxx)都会触发这个函数
+/**
+ * 这里的逻辑是这样的，首先，用户login进来，就进入这个beforeResolve函数，这时候的if (hasPermissions)是false的，因为还没有set
+ * 然后，就进入else那一块，在`permissions = await store.dispatch('user/getUserInfo')`那里，就是set Permission的时候，执行完这个就有Permissions了
+ * 最后，`accessRoutes = await store.dispatch('routes/setRoutes', permissions)`，就可以把这个权限对应的asyncRoutes给设置上去
+ */
 router.beforeResolve(async (to, from, next) => {
   if (progressBar) VabProgress.start()
   let hasToken = store.getters['user/accessToken']
@@ -47,8 +52,8 @@ router.beforeResolve(async (to, from, next) => {
             permissions = ['admin']
           } else {
             permissions = await store.dispatch('user/getUserInfo')
+            // todo: 更新asyncRoutes列表的代码可以放这里，这里只有初次登陆才会进来，那么，只有让后端在路由权限有变化后，把所有token定为过期并要强制重新登陆
           }
-
           let accessRoutes = []
           if (authentication === 'intelligence') {
             accessRoutes = await store.dispatch('routes/setRoutes', permissions)

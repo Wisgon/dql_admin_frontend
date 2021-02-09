@@ -14,5 +14,7 @@ const network = {
   invalidCode: 402,
   //无权限code
   noPermissionCode: 401,
+  //token异常页
+  tokenInvalid: 403,
 }
 module.exports = network

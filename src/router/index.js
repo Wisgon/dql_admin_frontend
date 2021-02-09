@@ -9,17 +9,6 @@ import Layout from '@/layouts'
 import EmptyLayout from '@/layouts/EmptyLayout'
 import { publicPath, routerMode } from '@/config'
 
-// import { getList } from '@/api/dql_roleManagement'
-
-// var queryForm = {
-//   pageNo: 1,
-//   pageSize: 10,
-//   name: '',
-// }
-// getList(queryForm).then((res) => {
-//   console.log('res.data :', res.data)
-// })
-
 // this.$router.go(0) 可强制刷新
 
 Vue.use(VueRouter)
@@ -44,6 +33,12 @@ export const constantRoutes = [
     path: '/404',
     name: '404',
     component: () => import('@/views/404'),
+    hidden: true,
+  },
+  {
+    path: '/403',
+    name: '403',
+    component: () => import('@/views/403'),
     hidden: true,
   },
 ]
@@ -95,7 +90,7 @@ export const asyncRoutes = [
         name: 'Test',
         component: () => import('@/views/test/index'),
         meta: {
-          title: 'test',
+          title: '测试websocket',
           permissions: ['admin', 'editor'],
         },
       },
