@@ -57,6 +57,7 @@
 <script>
   import { doEdit, doCreate } from '@/api/dql_roleManagement'
   import { getAccessablePages } from '@/api/dql_roleManagement'
+  import { isInArray } from '@/utils/useful'
 
   export default {
     name: 'RoleManagementEdit',
@@ -79,6 +80,7 @@
           label: 'name',
         },
         checked_pages: [],
+        old_accessable_pages: [],
       }
     },
     created() {
@@ -102,9 +104,10 @@
             if (res.code != 0) {
               that.$baseMessage('获取角色权限失败', 'error')
             } else {
-              this.$refs.route_tree.setCheckedKeys(
+              that.$refs.route_tree.setCheckedKeys(
                 Object.keys(res.data[row.role_id])
               )
+              that.old_accessable_pages = res.data[row.role_id]
             }
           })
         }
@@ -127,7 +130,7 @@
         })
 
         if (uid) {
-          //说明是编辑
+          // 说明是编辑
           var data = {
             uid,
             accessable_pages,
