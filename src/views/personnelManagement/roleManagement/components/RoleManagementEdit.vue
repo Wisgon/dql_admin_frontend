@@ -6,15 +6,46 @@
     @close="close"
   >
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-      <el-tree
-        v-if="title == '编辑'"
-        ref="route_tree"
-        node-key="value"
-        :default-checked-keys="checked_pages"
-        :data="allAsyncRoutes"
-        :props="defaultProps"
-        show-checkbox
-      ></el-tree>
+      <el-form-item prop="name">
+        角色名：
+        <el-input
+          v-model.trim="form.name"
+          type="text"
+          placeholder="请输入角色名"
+          auto-complete="off"
+        >
+          <vab-icon slot="prefix" :icon="['fas', 'user-alt']"></vab-icon>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        英文标识：
+        <el-input
+          v-if="title == '添加'"
+          v-model.trim="form.role_id"
+          type="text"
+          placeholder="请输英文标识"
+          auto-complete="off"
+        ></el-input>
+        <el-input
+          v-else
+          v-model.trim="form.role_id"
+          type="text"
+          placeholder="请输英文标识"
+          auto-complete="off"
+          disabled
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="permissions">
+        该角色可访问页面：
+        <el-tree
+          ref="route_tree"
+          node-key="value"
+          :default-checked-keys="checked_pages"
+          :data="allAsyncRoutes"
+          :props="defaultProps"
+          show-checkbox
+        ></el-tree>
+      </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="close">取 消</el-button>
@@ -24,7 +55,7 @@
 </template>
 
 <script>
-  import { doEdit } from '@/api/dql_roleManagement'
+  import { doEdit, doCreate } from '@/api/dql_roleManagement'
   import { getAccessablePages } from '@/api/dql_roleManagement'
 
   export default {
@@ -57,7 +88,12 @@
       showEdit(row) {
         var that = this
         if (!row) {
+          var that = this
           this.title = '添加'
+          setTimeout(() => {
+            // 如果先点了编辑，tree有了选中值，那点添加的时候回有残留，所以要清理掉
+            that.$refs.route_tree.setCheckedKeys([])
+          }, 1000)
         } else {
           this.title = '编辑'
           this.form = Object.assign({}, row)
@@ -89,16 +125,38 @@
             accessable_pages.push(node.value)
           }
         })
-        var data = {
-          uid,
-          accessable_pages,
-        }
-        doEdit(data).then((res) => {
-          if (res.code == 0) {
-            this.$baseMessage(res.message, 'success')
+
+        if (uid) {
+          //说明是编辑
+          var data = {
+            uid,
+            accessable_pages,
           }
-          that.close()
-        })
+          doEdit(data).then((res) => {
+            if (res.code == 0) {
+              this.$baseMessage(res.message, 'success')
+            } else {
+              this.$baseMessage(res.message, 'error')
+            }
+            that.close()
+          })
+        } else {
+          // 新建role
+          var data = {
+            name: this.form.name,
+            role_id: this.form.role_id,
+            accessable_pages,
+          }
+          doCreate(data).then((res) => {
+            if (res.code == 0) {
+              this.$baseMessage(res.message, 'success')
+            } else {
+              this.$baseMessage(res.message, 'error')
+            }
+            that.close()
+            that.$router.go(0)
+          })
+        }
       },
     },
   }

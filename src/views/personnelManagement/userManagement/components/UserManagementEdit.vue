@@ -57,9 +57,9 @@
             { required: true, trigger: 'blur', message: '请输入用户名' },
           ],
           password: [
-            { required: false, trigger: 'blur', message: '请输入密码' },
+            { required: true, trigger: 'blur', message: '请输入密码' },
           ],
-          email: [{ required: true, trigger: 'blur', message: '请输入邮箱' }],
+          email: [{ required: false, trigger: 'blur', message: '请输入邮箱' }],
           permissions: [
             { required: true, trigger: 'blur', message: '请选择权限' },
           ],
@@ -75,8 +75,10 @@
       showEdit(row) {
         if (!row) {
           this.title = '添加'
+          this.rules.password[0].required = true
         } else {
           this.title = '编辑'
+          this.rules.password[0].required = false
           this.form = Object.assign({}, row)
           this.old_data = Object.assign({}, row)
         }
@@ -91,6 +93,11 @@
         var that = this
         this.$refs['form'].validate(async (valid) => {
           if (valid) {
+            if (this.title == '添加') {
+              this.$baseMessage('模拟添加成功', 'success')
+              this.close()
+              return
+            }
             for (let key in this.old_data) {
               if (this.old_data[key] == this.form[key]) {
                 continue

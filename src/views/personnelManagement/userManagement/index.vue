@@ -17,6 +17,7 @@
               placeholder="请输入用户名"
               clearable
             />
+            <el-checkbox v-model="queryForm.fuzz">模糊查询</el-checkbox>
           </el-form-item>
           <el-form-item>
             <el-button icon="el-icon-search" type="primary" @click="queryData">
@@ -120,6 +121,7 @@
           pageNo: 1,
           pageSize: 10,
           username: '',
+          fuzz: false,
         },
       }
     },

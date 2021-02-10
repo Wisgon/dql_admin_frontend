@@ -16,6 +16,14 @@ export function doEdit(data) {
   })
 }
 
+export function doCreate(data) {
+  return request({
+    url: '/api/roleManagement/create_role',
+    method: 'post',
+    data,
+  })
+}
+
 export function doDelete(data) {
   return request({
     url: '/api/roleManagement/doDelete',
