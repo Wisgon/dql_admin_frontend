@@ -51,8 +51,19 @@
       ></el-table-column>
       <el-table-column show-overflow-tooltip label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="text" @click="handleEdit(row)">编辑</el-button>
-          <el-button type="text" @click="handleDelete(row)">删除</el-button>
+          <el-button v-if="row.role_id == 'admin'" type="text" disabled>
+            编辑
+          </el-button>
+          <el-button v-else type="text" @click="handleEdit(row)">
+            编辑
+          </el-button>
+          <el-button v-if="row.role_id == 'admin'" type="text" disabled>
+            删除
+          </el-button>
+
+          <el-button v-else type="text" @click="handleDelete(row)">
+            删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

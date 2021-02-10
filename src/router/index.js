@@ -49,6 +49,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: 'noRedirect',
     hidden: true,
+    meta: { title: '用户信息' },
     children: [
       {
         path: 'personalCenter',
@@ -64,6 +65,7 @@ export const asyncRoutes = [
     path: '/',
     component: Layout,
     redirect: 'index',
+    meta: { title: '显示首页' },
     children: [
       {
         path: 'index',
@@ -83,7 +85,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'Test',
     alwaysShow: true,
-    meta: { title: '测试', icon: 'marker' },
+    meta: { title: '测试', icon: 'marker', permissions: ['admin'] },
     children: [
       {
         path: 'test',
@@ -91,7 +93,7 @@ export const asyncRoutes = [
         component: () => import('@/views/test/index'),
         meta: {
           title: '测试websocket',
-          permissions: ['admin', 'editor'],
+          permissions: ['admin'],
         },
       },
     ],
@@ -103,7 +105,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'Vab',
     alwaysShow: true,
-    meta: { title: '组件', icon: 'box-open' },
+    meta: { title: '组件', icon: 'box-open', permissions: ['admin'] },
     children: [
       {
         path: 'permissions',
@@ -111,7 +113,7 @@ export const asyncRoutes = [
         component: () => import('@/views/vab/permissions/index'),
         meta: {
           title: '角色权限',
-          permissions: ['admin', 'editor'],
+          permissions: ['admin'],
         },
       },
       {
@@ -128,19 +130,19 @@ export const asyncRoutes = [
             path: 'awesomeIcon',
             name: 'AwesomeIcon',
             component: () => import('@/views/vab/icon/index'),
-            meta: { title: '常规图标' },
+            meta: { title: '常规图标', permissions: ['admin'] },
           },
           {
             path: 'remixIcon',
             name: 'RemixIcon',
             component: () => import('@/views/vab/icon/remixIcon'),
-            meta: { title: '小清新图标' },
+            meta: { title: '小清新图标', permissions: ['admin'] },
           },
           {
             path: 'colorfulIcon',
             name: 'ColorfulIcon',
             component: () => import('@/views/vab/icon/colorfulIcon'),
-            meta: { title: '多彩图标' },
+            meta: { title: '多彩图标', permissions: ['admin'] },
           },
         ],
       },
@@ -213,14 +215,14 @@ export const asyncRoutes = [
             path: 'menu1-1',
             name: 'Menu1-1',
             alwaysShow: true,
-            meta: { title: '嵌套路由 1-1' },
+            meta: { title: '嵌套路由 1-1', permissions: ['admin'] },
             component: () => import('@/views/vab/nested/menu1/menu1-1/index'),
 
             children: [
               {
                 path: 'menu1-1-1',
                 name: 'Menu1-1-1',
-                meta: { title: '嵌套路由 1-1-1' },
+                meta: { title: '嵌套路由 1-1-1', permissions: ['admin'] },
                 component: () =>
                   import('@/views/vab/nested/menu1/menu1-1/menu1-1-1/index'),
               },
@@ -299,7 +301,7 @@ export const asyncRoutes = [
         meta: {
           title: '外链',
           target: '_blank',
-          permissions: ['admin', 'editor'],
+          permissions: ['admin'],
           badge: 'New',
         },
       },
@@ -323,21 +325,21 @@ export const asyncRoutes = [
         name: 'UserManagement',
         component: () =>
           import('@/views/personnelManagement/userManagement/index'),
-        meta: { title: '用户管理' },
+        meta: { title: '用户管理', permissions: ['admin'] },
       },
       {
         path: 'roleManagement',
         name: 'RoleManagement',
         component: () =>
           import('@/views/personnelManagement/roleManagement/index'),
-        meta: { title: '角色管理' },
+        meta: { title: '角色管理', permissions: ['admin'] },
       },
       {
         path: 'menuManagement',
         name: 'MenuManagement',
         component: () =>
           import('@/views/personnelManagement/menuManagement/index'),
-        meta: { title: '菜单管理', badge: 'New' },
+        meta: { title: '菜单管理', badge: 'New', permissions: ['admin'] },
       },
     ],
   },
@@ -360,6 +362,7 @@ export const asyncRoutes = [
         meta: {
           title: '支付',
           noKeepAlive: true,
+          permissions: ['admin'],
         },
         children: null,
       },
@@ -369,6 +372,7 @@ export const asyncRoutes = [
         component: () => import('@/views/mall/goodsList/index'),
         meta: {
           title: '商品列表',
+          permissions: ['admin'],
         },
       },
     ],

@@ -23,3 +23,10 @@ export function doDelete(data) {
     data,
   })
 }
+
+export function getAccessablePages(param = '') {
+  return request({
+    url: '/api/roleManagement/accessable_pages' + param,
+    method: 'get',
+  })
+}

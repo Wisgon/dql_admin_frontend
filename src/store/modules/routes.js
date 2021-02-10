@@ -4,15 +4,23 @@
  */
 import { asyncRoutes, constantRoutes } from '@/router'
 import { getRouterList } from '@/api/router'
-import { convertRouter, filterAsyncRoutes } from '@/utils/handleRoutes'
+import {
+  convertRouter,
+  filterAsyncRoutes,
+  asyncRouteToTree,
+  updateAsyncRoute,
+} from '@/utils/handleRoutes'
+import { getAccessablePages } from '@/api/dql_roleManagement'
 
 const state = () => ({
   routes: [],
   partialRoutes: [],
+  allAsyncRoutes: asyncRouteToTree(),
 })
 const getters = {
   routes: (state) => state.routes,
   partialRoutes: (state) => state.partialRoutes,
+  allAsyncRoutes: (state) => state.allAsyncRoutes,
 }
 const mutations = {
   setRoutes(state, routes) {
@@ -27,7 +35,16 @@ const mutations = {
 }
 const actions = {
   async setRoutes({ commit }, permissions) {
-    //开源版只过滤动态路由permissions，admin不再默认拥有全部权限
+    //从后端获取该用户所拥有的权限下的能访问的page
+    const accessablePages = await getAccessablePages()
+
+    // 根据该用户的权限页面来update这个用户有权限的route
+    // 这里的accessablePage.data是类似这样的object：
+    /**
+     *{"editor":{"外链":true,"支付":true,"测试websocket":true,"角色权限":true},"tourist":{"外链":true,"用户管理":true}}
+     *其中第一层的key是对应的权限id，第二层的key则是对应能访问的page
+     */
+    updateAsyncRoute(asyncRoutes, accessablePages)
     const finallyAsyncRoutes = await filterAsyncRoutes(
       [...asyncRoutes],
       permissions

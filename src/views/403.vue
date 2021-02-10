@@ -4,6 +4,7 @@
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <div class="pic-error">
+            <!--todo:403页面的png-->
             <img
               alt="403"
               class="pic-error-parent"
@@ -49,9 +50,9 @@
       return {
         jumpTime: 5,
         oops: '抱歉!',
-        headline: '请重新登陆验证权限...',
+        headline: '部分角色操作权限有更新，请重新登陆验证权限...',
         info: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
-        btn: '返回首页',
+        btn: '返回登录页面',
         timer: 0,
       }
     },
@@ -67,9 +68,9 @@
           if (this.jumpTime) {
             this.jumpTime--
           } else {
-            this.$router.push({ path: '/' })
+            this.$router.push({ path: '/login' })
             this.$store.dispatch('tabsBar/delOthersRoutes', {
-              path: '/',
+              path: '/login',
             })
             clearInterval(this.timer)
           }

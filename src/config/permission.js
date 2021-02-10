@@ -52,7 +52,6 @@ router.beforeResolve(async (to, from, next) => {
             permissions = ['admin']
           } else {
             permissions = await store.dispatch('user/getUserInfo')
-            // todo: 更新asyncRoutes列表的代码可以放这里，这里只有初次登陆才会进来，那么，只有让后端在路由权限有变化后，把所有token定为过期并要强制重新登陆
           }
           let accessRoutes = []
           if (authentication === 'intelligence') {

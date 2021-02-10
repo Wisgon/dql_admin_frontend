@@ -102,7 +102,7 @@ instance.interceptors.response.use(
     if (loadingInstance) loadingInstance.close()
 
     const { status, data, config } = response
-    const { code, msg } = data
+    const { code, message } = data
     // 操作正常Code数组
     const codeVerificationArray = isArray(successCode)
       ? [...successCode]
@@ -111,10 +111,10 @@ instance.interceptors.response.use(
     if (codeVerificationArray.includes(code)) {
       return data
     } else {
-      handleCode(code, msg)
+      handleCode(code, message)
       return Promise.reject(
         'dgraph_admin请求异常拦截:' +
-          JSON.stringify({ url: config.url, code, msg }) || 'Error'
+          JSON.stringify({ url: config.url, code, message }) || 'Error'
       )
     }
     return data
