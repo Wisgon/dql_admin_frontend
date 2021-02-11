@@ -383,6 +383,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'Error',
     meta: { title: '错误页', icon: 'bug' },
+    hidden: true,
     children: [
       {
         path: '401',

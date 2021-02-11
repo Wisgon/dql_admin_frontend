@@ -75,7 +75,14 @@ export function asyncRouteToTree() {
 function parseTree(routes) {
   var tree = []
   for (var i = 0; i < routes.length; i++) {
-    if (routes[i].path == null || routes[i].path == '*') {
+    // 首先，排除那些特殊页面和不需要特殊权限的页面
+    if (
+      routes[i].path == null ||
+      routes[i].path == '*' ||
+      routes[i].hidden == true ||
+      routes[i].path == '/personalCenter' ||
+      routes[i].path == '/'
+    ) {
       continue
     }
     var title = 'notile title'

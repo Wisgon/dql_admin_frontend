@@ -33,9 +33,7 @@
             <div class="bullshit-oops">{{ oops }}</div>
             <div class="bullshit-headline">{{ headline }}</div>
             <div class="bullshit-info">{{ info }}</div>
-            <a class="bullshit-return-home" href="#/index">
-              {{ jumpTime }}s&nbsp;{{ btn }}
-            </a>
+            {{ jumpTime }}s&nbsp;{{ btn }}
           </div>
         </el-col>
       </el-row>
@@ -50,8 +48,9 @@
       return {
         jumpTime: 5,
         oops: '抱歉!',
-        headline: '部分角色操作权限有更新，请重新登陆验证权限...',
-        info: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
+        headline:
+          '您没有这个页面的权限或部分角色操作权限有更新，请重新登陆验证权限...',
+        info: '请检查您的权限是否正确，如有疑问请联系管理员',
         btn: '返回登录页面',
         timer: 0,
       }
@@ -68,13 +67,24 @@
           if (this.jumpTime) {
             this.jumpTime--
           } else {
-            this.$router.push({ path: '/login' })
-            this.$store.dispatch('tabsBar/delOthersRoutes', {
-              path: '/login',
-            })
+            // this.$router.push({ path: '/login' })
+            // this.$store.dispatch('tabsBar/delOthersRoutes', {
+            //   path: '/login',
+            // })
             clearInterval(this.timer)
+            this.logout()
           }
         }, 1000)
+      },
+      logout() {
+        this.$store
+          .dispatch('user/logout')
+          .then((res) => {
+            this.$router.push('/login')
+          })
+          .catch((error) => {
+            this.$router.push('/login')
+          })
       },
     },
   }
