@@ -102,8 +102,7 @@
 </template>
 
 <script>
-  import { doDelete } from '@/api/userManagement'
-  import { getList } from '@/api/dql_userManagement'
+  import { getList, doDelete } from '@/api/dql_userManagement'
   import Edit from './components/UserManagementEdit'
 
   export default {
@@ -141,10 +140,16 @@
       },
       handleDelete(row) {
         if (row.uid) {
+          var that = this
           this.$baseConfirm('你确定要删除当前项吗', null, async () => {
-            const { msg } = await doDelete({ ids: row.uid })
-            this.$baseMessage(msg, 'success')
-            this.fetchData()
+            const { code, message } = await doDelete({ uid: row.uid })
+            // console.log('message :>> ', message)
+            if (code != 0) {
+              that.$baseMessage(message, 'error')
+            } else {
+              that.$baseMessage(message, 'success')
+              that.$router.go(0)
+            }
           })
         } else {
           if (this.selectRows.length > 0) {

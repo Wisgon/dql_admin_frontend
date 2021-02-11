@@ -39,10 +39,8 @@
 </template>
 
 <script>
-  import { isInArray } from '@/utils/useful'
   import { doEdit } from '@/api/dql_userManagement'
   import { getList as getRolesLst } from '@/api/dql_roleManagement'
-  import permissions from '@/layouts/components/zx-layouts/Permissions'
 
   export default {
     name: 'UserManagementEdit',
@@ -55,7 +53,6 @@
           permissions: [],
         },
         roles: [],
-        old_data: {},
         change_data: {},
         rules: {
           username: [
@@ -91,9 +88,10 @@
           this.rules.password[0].required = true
         } else {
           this.title = '编辑'
+          // 编辑的时候不一定要改password
           this.rules.password[0].required = false
+          if (row.permissions == null) row.permissions = []
           this.form = Object.assign({}, row)
-          this.old_data = Object.assign({}, row)
         }
         this.dialogFormVisible = true
       },
@@ -110,55 +108,24 @@
               this.$baseMessage('模拟添加成功', 'success')
               this.close()
               return
-            }
-            // for (let key in this.old_data) {
-            //   if (this.old_data[key] == this.form[key]) {
-            //     continue
-            //   }
-            //   if (key != 'permissions') {
-            //     this.change_data[key] = this.form[key]
-            //   } else {
-            //     this.change_data['permissions'] = {
-            //       add: [],
-            //       delete: [],
-            //     }
-            //     // 遍历新数据查看是否要新增
-            //     this.form['permissions'].forEach((per) => {
-            //       if (!isInArray(this.old_data['permissions'], per)) {
-            //         // 没有在旧form中，说明是新增了
-            //         this.change_data['permissions']['add'].push(per)
-            //       }
-            //     })
-            //     // 遍历旧数据查看是否要删减
-            //     this.old_data['permissions'].forEach((per) => {
-            //       if (!isInArray(this.form['permissions'], per)) {
-            //         // 没有在新form中，说明是删了
-            //         this.change_data['permissions']['delete'].push(per)
-            //       }
-            //     })
-            //   }
-            // }
-            // this.change_data['uid'] = this.old_data['uid']
-            // console.log('this.form :>> ', this.form)
-            // console.log('this.change_data :>> ', this.change_data)
-            // var update_data = { update_data: this.change_data }
-
-            var update_data = {
-              uid: this.form.uid,
-              username: this.form.username,
-              password: this.form.password,
-              permissions: this.form.permissions,
-            }
-            const resp = await doEdit(update_data)
-            // console.log('resp :>> ', resp)
-            if (resp.code == 0) {
-              this.$baseMessage(resp.message, 'success')
-              setTimeout(() => {
-                that.$emit('fetch-data')
-                that.close()
-              }, 1000)
             } else {
-              this.$baseMessage(resp.message, 'error')
+              var update_data = {
+                uid: this.form.uid,
+                username: this.form.username,
+                password: this.form.password,
+                permissions: this.form.permissions,
+              }
+              const resp = await doEdit(update_data)
+              // console.log('resp :>> ', resp)
+              if (resp.code == 0) {
+                this.$baseMessage(resp.message, 'success')
+                setTimeout(() => {
+                  that.$emit('fetch-data')
+                  that.close()
+                }, 1000)
+              } else {
+                this.$baseMessage(resp.message, 'error')
+              }
             }
           } else {
             return false
@@ -168,7 +135,7 @@
       async fetchData() {
         var queryForm = {
           pageNo: 1,
-          pageSize: 10,
+          pageSize: 10240,
         }
         const resp = await getRolesLst(queryForm)
         this.roles = resp.data

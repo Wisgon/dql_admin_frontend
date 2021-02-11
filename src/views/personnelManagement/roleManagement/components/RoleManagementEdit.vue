@@ -6,6 +6,7 @@
     @close="close"
   >
     <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <!--todo: 表单验证 -->
       <el-form-item prop="name">
         角色名：
         <el-input
@@ -23,14 +24,13 @@
           v-if="title == '添加'"
           v-model.trim="form.role_id"
           type="text"
-          placeholder="请输英文标识"
+          placeholder="请输英文字母"
           auto-complete="off"
         ></el-input>
         <el-input
           v-else
           v-model.trim="form.role_id"
           type="text"
-          placeholder="请输英文标识"
           auto-complete="off"
           disabled
         ></el-input>
@@ -57,7 +57,6 @@
 <script>
   import { doEdit, doCreate } from '@/api/dql_roleManagement'
   import { getAccessablePages } from '@/api/dql_roleManagement'
-  import { isInArray } from '@/utils/useful'
 
   export default {
     name: 'RoleManagementEdit',
@@ -128,11 +127,13 @@
             accessable_pages.push(node.value)
           }
         })
+        var name = this.form.name
 
         if (uid) {
           // 说明是编辑
           var data = {
             uid,
+            name,
             accessable_pages,
           }
           doEdit(data).then((res) => {
@@ -157,9 +158,9 @@
               this.$baseMessage(res.message, 'error')
             }
             that.close()
-            that.$router.go(0)
           })
         }
+        that.$router.go(0)
       },
     },
   }

@@ -9,7 +9,7 @@
           批量删除
         </el-button> -->
       </vab-query-form-left-panel>
-      <vab-query-form-right-panel :span="12">
+      <!-- <vab-query-form-right-panel :span="12">
         <el-form :inline="true" :model="queryForm" @submit.native.prevent>
           <el-form-item>
             <el-input
@@ -24,7 +24,7 @@
             </el-button>
           </el-form-item>
         </el-form>
-      </vab-query-form-right-panel>
+      </vab-query-form-right-panel> -->
     </vab-query-form>
 
     <el-table
@@ -60,7 +60,6 @@
           <el-button v-if="row.role_id == 'admin'" type="text" disabled>
             删除
           </el-button>
-
           <el-button v-else type="text" @click="handleDelete(row)">
             删除
           </el-button>
@@ -81,8 +80,7 @@
 </template>
 
 <script>
-  import { doDelete } from '@/api/roleManagement'
-  import { getList } from '@/api/dql_roleManagement'
+  import { getList, doDelete } from '@/api/dql_roleManagement'
   import Edit from './components/RoleManagementEdit'
 
   export default {
@@ -119,18 +117,24 @@
       },
       handleDelete(row) {
         if (row.uid) {
+          var that = this
           this.$baseConfirm('你确定要删除当前项吗', null, async () => {
-            const { msg } = await doDelete({ ids: row.uid })
-            this.$baseMessage(msg, 'success')
-            this.fetchData()
+            const { code, message } = await doDelete({ uid: row.uid })
+            // console.log('message :>> ', message)
+            if (code != 0) {
+              that.$baseMessage(message, 'error')
+            } else {
+              that.$baseMessage(message, 'success')
+              that.$router.go(0)
+            }
           })
         } else {
           if (this.selectRows.length > 0) {
-            const ids = this.selectRows.map((item) => item.uid).join()
-            this.$baseConfirm('你确定要删除选中项吗', null, async () => {
+            const ids = that.selectRows.map((item) => item.uid).join()
+            that.$baseConfirm('你确定要删除选中项吗', null, async () => {
               const { msg } = await doDelete({ ids })
-              this.$baseMessage(msg, 'success')
-              this.fetchData()
+              that.$baseMessage(msg, 'success')
+              that.fetchData()
             })
           } else {
             this.$baseMessage('未选中任何行', 'error')
