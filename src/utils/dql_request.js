@@ -122,9 +122,10 @@ instance.interceptors.response.use(
   (error) => {
     if (loadingInstance) loadingInstance.close()
     const { response, message } = error
+    // 这里的error.response.data就是我后端返回的信息对象，格式是{"code": x, "message": y}
     if (error.response && error.response.data) {
-      const { status, data } = response
-      handleCode(status, data.msg || message)
+      const { code, message } = response
+      handleCode(code, message)
       return Promise.reject(error)
     } else {
       let { message } = error
