@@ -142,7 +142,10 @@
             } else {
               this.$baseMessage(res.message, 'error')
             }
-            that.close()
+            setTimeout(() => {
+              that.$emit('fetch-data')
+              that.close()
+            }, 1000)
           })
         } else {
           // 新建role
@@ -157,10 +160,12 @@
             } else {
               this.$baseMessage(res.message, 'error')
             }
-            that.close()
+            setTimeout(() => {
+              that.$emit('fetch-data')
+              that.close()
+            }, 1000)
           })
         }
-        that.$router.go(0)
       },
     },
   }
