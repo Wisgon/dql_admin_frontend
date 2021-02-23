@@ -38,7 +38,7 @@
           @click.native="handleCopyIcon(index, $event)"
         >
           <vab-remix-icon
-            :icon-class="`https://cdn.jsdelivr.net/gh/zhilong/zx-remixicon/src/icons/svg/${item}.svg`"
+            :icon-class="`https://cdn.jsdelivr.net/gh//zx-remixicon/src/icons/svg/${item}.svg`"
             @click.stop
           ></vab-remix-icon>
         </el-card>
@@ -107,7 +107,7 @@
         this.total = totalCount
       },
       handleCopyIcon(index, event) {
-        //const copyText = `<vab-remix-icon icon-class="https://cdn.jsdelivr.net/gh/zhilong/zx-remixicon@master/src/icons/svg/${this.queryIcon[index]}.svg" />`;
+        //const copyText = `<vab-remix-icon icon-class="https://cdn.jsdelivr.net/gh//zx-remixicon@master/src/icons/svg/${this.queryIcon[index]}.svg" />`;
         const copyText = `<vab-remix-icon icon-class="${this.queryIcon[index]}" />`
         this.copyText = copyText
         clip(copyText, event)

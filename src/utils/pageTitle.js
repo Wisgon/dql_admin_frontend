@@ -1,7 +1,7 @@
 import { title } from '@/config'
 
 /**
- * @author zhilong
+ * @author
  * @description 设置标题
  * @param pageTitle
  * @returns {string}

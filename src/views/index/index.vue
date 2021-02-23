@@ -368,7 +368,7 @@
                   value: 6500,
                 },
                 {
-                  name: 'zhilong',
+                  name: '',
                   value: 6000,
                 },
                 {

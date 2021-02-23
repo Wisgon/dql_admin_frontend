@@ -10,7 +10,7 @@ function clipboardError() {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 复制数据
  * @param text
  * @param event

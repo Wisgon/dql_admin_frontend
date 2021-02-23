@@ -29,7 +29,7 @@
         form: {
           payAccount: 'XXXXXXXXXXXXXXXX',
           gatheringAccount: '1204505056@qq.com',
-          gatheringName: 'zhilong',
+          gatheringName: '',
           price: '100',
         },
         rules: {

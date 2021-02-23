@@ -1,7 +1,7 @@
 import store from '@/store'
 
 /**
- * @author zhilong
+ * @author
  * @description 检查权限
  * @param value
  * @returns {boolean}
@@ -20,7 +20,7 @@ export function checkPermission(value) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 从后端获取所有角色的路由权限并更新`async route`
  */
 export function refreshAsyncRoute() {}

@@ -144,7 +144,7 @@
       document.body.style.overflow = 'auto'
     },
     mounted() {
-      this.form.username = 'zhilong'
+      this.form.username = ''
       this.form.password = '123456'
       // setTimeout(() => {
       //   this.handleLogin()

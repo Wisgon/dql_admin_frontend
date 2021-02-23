@@ -19,7 +19,7 @@ import { isArray } from '@/utils/validate'
 let loadingInstance
 
 /**
- * @author zhilong
+ * @author
  * @description 处理code异常
  * @param {*} code
  * @param {*} msg

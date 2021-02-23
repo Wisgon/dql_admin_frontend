@@ -1,5 +1,5 @@
 /**
- * @author zhilong
+ * @author
  * @description 判读是否为外链
  * @param path
  * @returns {boolean}
@@ -9,7 +9,7 @@ export function isExternal(path) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 校验密码是否小于6位
  * @param str
  * @returns {boolean}
@@ -19,7 +19,7 @@ export function isPassword(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否为数字
  * @param value
  * @returns {boolean}
@@ -30,7 +30,7 @@ export function isNumber(value) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是名称
  * @param value
  * @returns {boolean}
@@ -41,7 +41,7 @@ export function isName(value) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否为IP
  * @param ip
  * @returns {boolean}
@@ -52,7 +52,7 @@ export function isIP(ip) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是传统网站
  * @param url
  * @returns {boolean}
@@ -63,7 +63,7 @@ export function isUrl(url) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是小写字母
  * @param str
  * @returns {boolean}
@@ -74,7 +74,7 @@ export function isLowerCase(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是大写字母
  * @param str
  * @returns {boolean}
@@ -85,7 +85,7 @@ export function isUpperCase(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是大写字母开头
  * @param str
  * @returns {boolean}
@@ -96,7 +96,7 @@ export function isAlphabets(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是字符串
  * @param str
  * @returns {boolean}
@@ -106,7 +106,7 @@ export function isString(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是数组
  * @param arg
  * @returns {arg is any[]|boolean}
@@ -119,7 +119,7 @@ export function isArray(arg) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是端口号
  * @param str
  * @returns {boolean}
@@ -130,7 +130,7 @@ export function isPort(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是手机号
  * @param str
  * @returns {boolean}
@@ -141,7 +141,7 @@ export function isPhone(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是身份证号(第二代)
  * @param str
  * @returns {boolean}
@@ -152,7 +152,7 @@ export function isIdCard(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否是邮箱
  * @param str
  * @returns {boolean}
@@ -163,7 +163,7 @@ export function isEmail(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否中文
  * @param str
  * @returns {boolean}
@@ -174,7 +174,7 @@ export function isChina(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否为空
  * @param str
  * @returns {boolean}
@@ -190,7 +190,7 @@ export function isBlank(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否为固话
  * @param str
  * @returns {boolean}
@@ -201,7 +201,7 @@ export function isTel(str) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断是否为数字且最多两位小数
  * @param str
  * @returns {boolean}

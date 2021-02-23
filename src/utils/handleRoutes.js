@@ -1,5 +1,5 @@
 /**
- * @author zhilong
+ * @author
  * @description all模式渲染后端返回路由
  * @param constantRoutes
  * @returns {*}
@@ -27,7 +27,7 @@ export function convertRouter(asyncRoutes) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 判断当前路由是否包含权限
  * @param permissions
  * @param route
@@ -42,7 +42,7 @@ function hasPermission(permissions, route) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description intelligence模式根据permissions数组拦截路由
  * @param routes
  * @param permissions
@@ -63,7 +63,7 @@ export function filterAsyncRoutes(routes, permissions) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 将所有async route变为一个tree结构
  */
 import { asyncRoutes } from '@/router'
@@ -104,7 +104,7 @@ function parseTree(routes) {
 }
 
 /**
- * @author zhilong
+ * @author
  * @description 接受后端传来的该用户的权限页面，返回修改后的async route
  * @param accessable_pages 该用户有权访问的页面（是最终页面，也就是页面树的最终子节点）
  */

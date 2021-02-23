@@ -38,7 +38,7 @@
           @click.native="handleCopyIcon(index, $event)"
         >
           <vab-colorful-icon
-            :icon-class="`https://cdn.jsdelivr.net/gh/zhilong/zx-colorful-icon@master/${item}.svg`"
+            :icon-class="`https://cdn.jsdelivr.net/gh//zx-colorful-icon@master/${item}.svg`"
           />
         </el-card>
         <div class="icon-text">{{ item }}</div>
@@ -105,7 +105,7 @@
         this.total = totalCount
       },
       handleCopyIcon(index, event) {
-        //const copyText = `<vab-colorful-icon icon-class="https://cdn.jsdelivr.net/gh/zhilong/zx-colorful-icon@master/${this.queryIcon[index]}.svg" />`;
+        //const copyText = `<vab-colorful-icon icon-class="https://cdn.jsdelivr.net/gh//zx-colorful-icon@master/${this.queryIcon[index]}.svg" />`;
         const copyText = `<vab-colorful-icon icon-class="${this.queryIcon[index]}" />`
         this.copyText = copyText
         clip(copyText, event)

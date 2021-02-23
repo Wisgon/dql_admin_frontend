@@ -1,5 +1,5 @@
 /**
- * @author zhilong
+ * @author
  * @description 代码生成机状态管理
  */
 

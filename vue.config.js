@@ -27,7 +27,7 @@ const dayjs = require('dayjs')
 const date = dayjs().format('YYYY_M_D')
 const time = dayjs().format('YYYY-M-D HH:mm:ss')
 process.env.VUE_APP_TITLE = title || 'dgraph_admin'
-process.env.VUE_APP_AUTHOR = author || 'zhilong 286142377@qq.com'
+process.env.VUE_APP_AUTHOR = author || ' 286142377@qq.com'
 process.env.VUE_APP_UPDATE_TIME = time
 process.env.VUE_APP_VERSION = version
 

@@ -1,6 +1,6 @@
 <template>
   <!-- js代码错误实时提醒测试 -->
-  <div>{{ zhilongjiayou.zhilongjiayou }}</div>
+  <div>{{ jiayou.jiayou }}</div>
 </template>
 
 <script>
