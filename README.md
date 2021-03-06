@@ -5,3 +5,5 @@ dgraph_admin 是用 vue，elementui，vuecli3 搭建的前端，配合 go 语言
 
 后端地址：
 https://gitee.com/wisgon/dql_admin_backend.git
+
+启动后端后，在 frontend 目录下运行"npm run serve"即可
